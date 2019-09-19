@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CurrentNewCreature from '../CurrentNewCreature/CurrentNewCreature';
 import ListCreatures from '../ListCreatures/ListCreatures';
+import CreatureInputs from '../CreatureInputs/CreatureInputs';
 
 
 class Form extends Component {
@@ -10,6 +11,7 @@ class Form extends Component {
             city: '',
             zipCode: ''
         },
+        
         displayUser: {
             name: "display Name",
             city: 'display City',
@@ -90,12 +92,16 @@ class Form extends Component {
 
        return(
             <div>
-                <input placeholder="name" onChange={(event) => this.handleChangeForm(event, 'name')}></input>
+                <CreatureInputs 
+                    handleChangeForm={this.handleChangeForm}
+                    handleClick={this.handleClick}
+                />
+                {/* <input placeholder="name" onChange={(event) => this.handleChangeForm(event, 'name')}></input>
                 <input placeholder="city" onChange={(event) => this.handleChangeForm(event, 'city')}></input>
                 <input placeholder="zip code" onChange={(event) => this.handleChangeForm(event, 'zipCode')}></input>
                 
                 <br></br>
-                <button onClick={this.handleClick}>SUBMIT</button>
+                <button onClick={this.handleClick}>SUBMIT</button> */}
                 <CurrentNewCreature displayNewCreature={this.state.displayUser} />
                 {/* <p>{this.state.displayUser.name}</p>
                 <p>{this.state.displayUser.city}</p>
