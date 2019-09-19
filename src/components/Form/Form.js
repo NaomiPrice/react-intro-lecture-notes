@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
+import CurrentNewCreature from '../CurrentNewCreature/CurrentNewCreature';
+import ListCreatures from '../ListCreatures/ListCreatures';
+
 
 class Form extends Component {
     state = {
         user: {
             name: '',
-            city: ''
+            city: '',
+            zipCode: ''
         },
         displayUser: {
             name: "display Name",
-            city: 'display City'
+            city: 'display City',
+            zipCode: 'displayZipCode'
         },
     
         creatureList: [
@@ -47,7 +52,7 @@ class Form extends Component {
             displayUser: {
                 name: this.state.user.name,
                 city: this.state.user.city,
-                zip: this.state.user.zip
+                zipCode: this.state.user.zipCode
             }
         })
     }//end handleClick
@@ -72,11 +77,11 @@ class Form extends Component {
     }
 
     render(){
-        const listItemCreatures = this.state.creatureList.map((creature)=>{
-            return(<li key={creature.name}>
-                The {creature.name} is from {creature.origin}
-                </li>);
-        });
+        // const listItemCreatures = this.state.creatureList.map((creature)=>{
+        //     return(<li key={creature.name}>
+        //         The {creature.name} is from {creature.origin}
+        //         </li>);
+        // });
         
         // for (let creature of this.state.creatureList){
         //     listItemCreatures.push(<li>{creature}</li>);
@@ -87,21 +92,23 @@ class Form extends Component {
             <div>
                 <input placeholder="name" onChange={(event) => this.handleChangeForm(event, 'name')}></input>
                 <input placeholder="city" onChange={(event) => this.handleChangeForm(event, 'city')}></input>
-                <input placeholder="zip code" onChange={(event) => this.handleChangeForm(event, 'zip')}></input>
+                <input placeholder="zip code" onChange={(event) => this.handleChangeForm(event, 'zipCode')}></input>
                 
                 <br></br>
                 <button onClick={this.handleClick}>SUBMIT</button>
-                <p>{this.state.displayUser.name}</p>
+                <CurrentNewCreature displayNewCreature={this.state.displayUser} />
+                {/* <p>{this.state.displayUser.name}</p>
                 <p>{this.state.displayUser.city}</p>
-                <p>{this.state.displayUser.zip}</p>
+                <p>{this.state.displayUser.zipCode}</p> */}
 
                 {/* Splatting to the DOM looks like this:
                 <pre>
                     {JSON.stringify(this.state.creatureList, null,2)}
                 </pre> */}
-                <ul>
+                <ListCreatures creatureList={this.state.creatureList}/>
+                {/* <ul>
                     {listItemCreatures}
-                </ul>
+                </ul> */}
             </div>
        );
     }
